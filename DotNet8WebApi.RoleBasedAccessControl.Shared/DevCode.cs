@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Shared;
 
-namespace DotNet8WebApi.RoleBasedAccessControl.Shared
+public static class DevCode
 {
-    public static class DevCode
+    public static bool IsNullOrEmpty(this string str)
     {
-        public static bool IsNullOrEmpty(this string str)
-        {
-            return string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str);
-        }
+        return string.IsNullOrEmpty(str) || string.IsNullOrWhiteSpace(str);
     }
 }
