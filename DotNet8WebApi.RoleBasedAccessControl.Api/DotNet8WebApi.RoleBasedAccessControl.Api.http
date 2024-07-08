@@ -1,0 +1,6 @@
+@DotNet8WebApi.RoleBasedAccessControl.Api_HostAddress = http://localhost:5237
+
+GET {{DotNet8WebApi.RoleBasedAccessControl.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

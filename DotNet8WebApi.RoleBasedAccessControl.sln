@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35005.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.DbService", "DotNet8WebApi.RoleBasedAccessControl.DbService\DotNet8WebApi.RoleBasedAccessControl.DbService.csproj", "{DF04F146-6DC8-4E3A-A7E7-8BA092B76029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.Models", "DotNet8WebApi.RoleBasedAccessControl.Models\DotNet8WebApi.RoleBasedAccessControl.Models.csproj", "{5A4BE33F-1445-45D4-A281-47F22437C3A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.Repositories", "DotNet8WebApi.RoleBasedAccessControl.Repositories\DotNet8WebApi.RoleBasedAccessControl.Repositories.csproj", "{10743524-2035-40C2-A7CC-F39F87123A7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.Mapper", "DotNet8WebApi.RoleBasedAccessControl.Mapper\DotNet8WebApi.RoleBasedAccessControl.Mapper.csproj", "{D7B628E4-64B6-41B4-A73B-51B1E975F861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.Shared", "DotNet8WebApi.RoleBasedAccessControl.Shared\DotNet8WebApi.RoleBasedAccessControl.Shared.csproj", "{606505DB-7D6E-453E-A9B8-9BC1CA404F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet8WebApi.RoleBasedAccessControl.Api", "DotNet8WebApi.RoleBasedAccessControl.Api\DotNet8WebApi.RoleBasedAccessControl.Api.csproj", "{77EEC06D-895D-466B-B09F-2FD6DC9EC885}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF04F146-6DC8-4E3A-A7E7-8BA092B76029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF04F146-6DC8-4E3A-A7E7-8BA092B76029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF04F146-6DC8-4E3A-A7E7-8BA092B76029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF04F146-6DC8-4E3A-A7E7-8BA092B76029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4BE33F-1445-45D4-A281-47F22437C3A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4BE33F-1445-45D4-A281-47F22437C3A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4BE33F-1445-45D4-A281-47F22437C3A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4BE33F-1445-45D4-A281-47F22437C3A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10743524-2035-40C2-A7CC-F39F87123A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10743524-2035-40C2-A7CC-F39F87123A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10743524-2035-40C2-A7CC-F39F87123A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10743524-2035-40C2-A7CC-F39F87123A7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B628E4-64B6-41B4-A73B-51B1E975F861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B628E4-64B6-41B4-A73B-51B1E975F861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B628E4-64B6-41B4-A73B-51B1E975F861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B628E4-64B6-41B4-A73B-51B1E975F861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606505DB-7D6E-453E-A9B8-9BC1CA404F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606505DB-7D6E-453E-A9B8-9BC1CA404F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606505DB-7D6E-453E-A9B8-9BC1CA404F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606505DB-7D6E-453E-A9B8-9BC1CA404F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EEC06D-895D-466B-B09F-2FD6DC9EC885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EEC06D-895D-466B-B09F-2FD6DC9EC885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EEC06D-895D-466B-B09F-2FD6DC9EC885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EEC06D-895D-466B-B09F-2FD6DC9EC885}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C03770EC-9095-46B2-A2A4-D81BC67E3786}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet8WebApi.RoleBasedAccessControl.DbService\DotNet8WebApi.RoleBasedAccessControl.DbService.csproj" />
+    <ProjectReference Include="..\DotNet8WebApi.RoleBasedAccessControl.Mapper\DotNet8WebApi.RoleBasedAccessControl.Mapper.csproj" />
+    <ProjectReference Include="..\DotNet8WebApi.RoleBasedAccessControl.Models\DotNet8WebApi.RoleBasedAccessControl.Models.csproj" />
+  </ItemGroup>
+
+</Project>
