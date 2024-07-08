@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
 
 public partial class TblUser
 {
