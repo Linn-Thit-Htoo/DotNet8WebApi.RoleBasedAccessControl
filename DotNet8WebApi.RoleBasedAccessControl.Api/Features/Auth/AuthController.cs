@@ -1,5 +1,4 @@
 ﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth
