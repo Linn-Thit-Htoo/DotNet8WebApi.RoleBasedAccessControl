@@ -1,5 +1,4 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
+﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
