@@ -2,9 +2,7 @@
 using DotNet8WebApi.RoleBasedAccessControl.Api.Middleware;
 using DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
 using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
-using DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
 using DotNet8WebApi.RoleBasedAccessControl.Shared;
-using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
 using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.SecurityServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
