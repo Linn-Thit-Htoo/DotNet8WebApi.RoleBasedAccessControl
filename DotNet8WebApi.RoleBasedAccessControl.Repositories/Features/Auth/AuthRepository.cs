@@ -1,13 +1,4 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Features;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Resources;
-using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
-using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.SecurityServices;
-using Microsoft.EntityFrameworkCore;
-
-namespace DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
 
 public class AuthRepository : IAuthRepository
 {
