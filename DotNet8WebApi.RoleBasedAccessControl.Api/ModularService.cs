@@ -1,15 +1,4 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
-using DotNet8WebApi.RoleBasedAccessControl.Api.Middleware;
-using DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
-using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
-using DotNet8WebApi.RoleBasedAccessControl.Shared;
-using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.SecurityServices;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-
-namespace DotNet8WebApi.RoleBasedAccessControl.Api;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Api;
 
 public static class ModularService
 {
@@ -18,7 +7,8 @@ public static class ModularService
         WebApplicationBuilder builder
     )
     {
-        return services.AddDbContextService(builder)
+        return services
+            .AddDbContextService(builder)
             .AddJsonService()
             .AddCustomService()
             .AddSwaggerAuthorizationService(builder)
@@ -58,41 +48,41 @@ public static class ModularService
         WebApplicationBuilder builder
     )
     {
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
+        builder
+            .Services.AddAuthentication(options =>
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                ValidAudience = builder.Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
-            };
-        });
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
+                    )
+                };
+            });
 
         return services;
     }
 
     private static IServiceCollection AddSwaggerAuthorizationService(
-    this IServiceCollection services,
-    WebApplicationBuilder builder
-)
+        this IServiceCollection services,
+        WebApplicationBuilder builder
+    )
     {
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc(
                 "v1",
-                new OpenApiInfo
-                {
-                    Title = "Role Based Access Control",
-                    Version = "v1"
-                }
+                new OpenApiInfo { Title = "Role Based Access Control", Version = "v1" }
             );
             c.AddSecurityDefinition(
                 "Bearer",
@@ -125,19 +115,22 @@ public static class ModularService
 
         builder.Services.AddAuthorization(opt =>
         {
-            opt.AddPolicy("AdminOnly", policy =>
-            {
-                policy.RequireRole(EnumUserRole.Admin.ToString().Encrypt());
-            });
+            opt.AddPolicy(
+                "AdminOnly",
+                policy =>
+                {
+                    policy.RequireRole(EnumUserRole.Admin.ToString().Encrypt());
+                }
+            );
         });
 
         return services;
     }
 
     private static IServiceCollection AddCorsPolicyService(
-    this IServiceCollection services,
-    WebApplicationBuilder builder
-)
+        this IServiceCollection services,
+        WebApplicationBuilder builder
+    )
     {
         return builder.Services.AddCors();
     }
