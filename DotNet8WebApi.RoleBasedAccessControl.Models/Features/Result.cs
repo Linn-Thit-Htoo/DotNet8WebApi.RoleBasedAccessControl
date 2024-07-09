@@ -1,7 +1,4 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
-using Newtonsoft.Json;
-
-namespace DotNet8WebApi.RoleBasedAccessControl.Models.Features;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Models.Features;
 
 public class Result<T>
 {
