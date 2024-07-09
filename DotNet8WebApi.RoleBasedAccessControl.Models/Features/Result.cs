@@ -1,10 +1,15 @@
 ﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
+using Newtonsoft.Json;
 
 namespace DotNet8WebApi.RoleBasedAccessControl.Models.Features;
 
 public class Result<T>
 {
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public T Data { get; set; }
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string Token { get; set; }
     public string Message { get; set; }
     public bool IsSuccess { get; set; }
     public bool IsError

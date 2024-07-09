@@ -1,7 +1,17 @@
 ﻿using DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
+using DotNet8WebApi.RoleBasedAccessControl.Api.Middleware;
 using DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;
+using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
 using DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
+using DotNet8WebApi.RoleBasedAccessControl.Shared;
+using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
+using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.SecurityServices;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace DotNet8WebApi.RoleBasedAccessControl.Api;
 
@@ -12,11 +22,14 @@ public static class ModularService
         WebApplicationBuilder builder
     )
     {
-        return services
-            .AddDbContextService(builder)
+        return services.AddDbContextService(builder)
+            .AddJsonService()
+            .AddCustomService()
+            .AddSwaggerAuthorizationService(builder)
+            .AddCorsPolicyService(builder)
+            .AddAuthenticationService(builder)
             .AddRepositoryService()
-            .AddBusinessLogicService()
-            .AddJsonService();
+            .AddBusinessLogicService();
     }
 
     private static IServiceCollection AddDbContextService(
@@ -44,10 +57,94 @@ public static class ModularService
         return services.AddScoped<BL_Auth>();
     }
 
-    //private static IServiceCollection AddAuthenticationService(this IServiceCollection services)
-    //{
+    private static IServiceCollection AddAuthenticationService(
+        this IServiceCollection services,
+        WebApplicationBuilder builder
+    )
+    {
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+            };
+        });
 
-    //}
+        return services;
+    }
+
+    private static IServiceCollection AddSwaggerAuthorizationService(
+    this IServiceCollection services,
+    WebApplicationBuilder builder
+)
+    {
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc(
+                "v1",
+                new OpenApiInfo
+                {
+                    Title = "Role Based Access Control",
+                    Version = "v1"
+                }
+            );
+            c.AddSecurityDefinition(
+                "Bearer",
+                new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                }
+            );
+            c.AddSecurityRequirement(
+                new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                }
+            );
+        });
+
+        builder.Services.AddAuthorization(opt =>
+        {
+            opt.AddPolicy("AdminOnly", policy =>
+            {
+                policy.RequireRole(EnumUserRole.Admin.ToString().Encrypt());
+            });
+        });
+
+        return services;
+    }
+
+    private static IServiceCollection AddCorsPolicyService(
+    this IServiceCollection services,
+    WebApplicationBuilder builder
+)
+    {
+        return builder.Services.AddCors();
+    }
 
     private static IServiceCollection AddJsonService(this IServiceCollection services)
     {
@@ -59,5 +156,15 @@ public static class ModularService
             });
 
         return services;
+    }
+
+    private static IServiceCollection AddCustomService(this IServiceCollection services)
+    {
+        return services.AddScoped<JWTAuth>().AddScoped<AesService>();
+    }
+
+    public static IApplicationBuilder AddMiddleware(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<AuthenticationMiddleware>();
     }
 }

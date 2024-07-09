@@ -1,4 +1,4 @@
-﻿namespace DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
 
 public class JwtResponseModel
 {

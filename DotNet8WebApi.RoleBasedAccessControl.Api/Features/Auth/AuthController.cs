@@ -1,9 +1,11 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
+﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
+using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
 
-[Route("api/[controller]")]
+[Route("api/account")]
 [ApiController]
 public class AuthController : BaseController
 {
@@ -14,7 +16,14 @@ public class AuthController : BaseController
         _bLAuth = bLAuth;
     }
 
-    [HttpPost]
+    [HttpGet]
+    [Authorize(Policy = "AdminOnly")]
+    public IActionResult Test()
+    {
+        return Ok("Hello!");
+    }
+
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestModel requestModel)
     {
         try

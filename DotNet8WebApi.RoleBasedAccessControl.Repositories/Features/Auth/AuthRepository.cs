@@ -3,6 +3,8 @@ using DotNet8WebApi.RoleBasedAccessControl.Models.Enums;
 using DotNet8WebApi.RoleBasedAccessControl.Models.Features;
 using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
 using DotNet8WebApi.RoleBasedAccessControl.Models.Resources;
+using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
+using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.SecurityServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
@@ -10,10 +12,12 @@ namespace DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
 public class AuthRepository : IAuthRepository
 {
     private readonly AppDbContext _appDbContext;
+    private readonly AesService _aesService;
 
-    public AuthRepository(AppDbContext appDbContext)
+    public AuthRepository(AppDbContext appDbContext, AesService esService)
     {
         _appDbContext = appDbContext;
+        _aesService = esService;
     }
 
     public async Task<Result<JwtResponseModel>> Login(LoginRequestModel requestModel)
@@ -49,9 +53,9 @@ public class AuthRepository : IAuthRepository
     {
         return new JwtResponseModel
         {
-            UserName = user.UserName,
-            Email = user.Email,
-            UserRole = user.UserRole
+            UserName = _aesService.EncryptString(user.UserName),
+            Email = _aesService.EncryptString(user.Email),
+            UserRole = _aesService.EncryptString(user.UserRole)
         };
     }
 }
