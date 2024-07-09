@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DotNet8WebApi.RoleBasedAccessControl.Shared/DevCode.cs
+/DotNet8WebApi.RoleBasedAccessControl.Shared/Services/SecurityServices/AesService.cs
+/DotNet8WebApi.RoleBasedAccessControl.Api/appsettings.json
