@@ -6,3 +6,4 @@ global using DotNet8WebApi.RoleBasedAccessControl.Repositories.Features.Auth;
 global using DotNet8WebApi.RoleBasedAccessControl.Shared.Services.AuthService;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
+global using Newtonsoft.Json;
