@@ -3,6 +3,7 @@
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using System.Text;
+global using DotNet8WebApi.RoleBasedAccessControl.Api;
 global using DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
 global using DotNet8WebApi.RoleBasedAccessControl.Api.Middleware;
 global using DotNet8WebApi.RoleBasedAccessControl.DbService.AppDbContexts;

@@ -1,5 +1,3 @@
-using DotNet8WebApi.RoleBasedAccessControl.Api;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
