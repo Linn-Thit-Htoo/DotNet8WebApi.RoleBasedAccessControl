@@ -1,8 +1,4 @@
-﻿using DotNet8WebApi.RoleBasedAccessControl.Models.Features.Auth;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
+﻿namespace DotNet8WebApi.RoleBasedAccessControl.Api.Features.Auth;
 
 [Route("api/account")]
 [ApiController]
